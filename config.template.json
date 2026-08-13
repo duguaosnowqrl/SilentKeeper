@@ -1,0 +1,52 @@
+{
+  "mail" : {
+    "host": "smtp.exmail.qq.com",
+    "port": "465",
+    "sender": "monitor@example.com",
+    "password": "your-password",
+    "receiver": "admin1@example.com;admin2@example.com"
+  },
+  "ecs" : {
+    "enabled": true,
+    "name" : "国内本地测试服",
+    "ip": "192.168.1.215",
+    "ipSecure": true,
+    "cpuPercentAlert": 50,
+    "memPercentAlert" : 80,
+    "partitions": [
+      {
+        "mountPoint" : "C:",
+        "usagePercentAlert": 80
+      },
+      {
+        "mountPoint" : "D:",
+        "usagePercentAlert": 80
+      }
+    ]
+  },
+  "process" : [
+    {
+      "enabled": true,
+      "name" : "游戏1服进程",
+      "pidPath" : "F:\\idle\\idleserver\\server\\OnigaoServerRoot\\OnigaoLoginServer\\pid",
+      "key" : "java",
+      "cpuPercentAlert" : 30,
+      "memMbAlert" : 2048
+    }
+  ],
+  "http": {
+    "enabled": true,
+    "bind": "127.0.0.1",
+    "port": 8895
+  },
+  "alertLogFile": "./alert.log",
+  "fileAlertEnabled": true,
+  "mailAlertEnabled": true,
+  "consoleAlertEnabled": true,
+  "tickerInterval" : 0,
+  "alertInterval" : 300,
+  "alertEmailSubject" : "【Idle国内版】【本地测试服】服务器警告",
+  "onlinePercentAlert": 80,
+  "registerPercentAlert": 80,
+  "userTimeZone": "Asia/Shanghai"
+}
