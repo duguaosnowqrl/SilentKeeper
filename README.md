@@ -273,3 +273,8 @@ curl -X POST "http://127.0.0.1:8895/district/report" \
 ## 版本
 
 当前代码中的版本号为 `1.0.2`。
+
+## 开源协议
+
+本项目使用 `MIT License` 开源，详见根目录的 `LICENSE` 文件。
+第三方依赖的协议声明见根目录 `THIRD_PARTY_NOTICES.md`。
