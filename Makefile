@@ -8,6 +8,7 @@ ifeq ($(OS),Windows_NT)
     RMDIR = rmdir /S /Q
     MKDIR = mkdir
     COPY = copy /Y
+    COPY_DIR = xcopy /Y /E /I
     fix_path = $(subst /,\,$(1))
 else
     # Linux/Mac 用 Unix 语法
@@ -18,6 +19,7 @@ else
 	RM_DIR = rm -rf
 	MKDIR = mkdir -p
 	COPY = cp
+	COPY_DIR = cp -r
 	fix_path = $(subst \,/,$(1))
 endif
 
@@ -33,6 +35,12 @@ clean:
 #复制配置
 copy-config:
 	$(COPY) config.template.json $(call fix_path,$(OUT_DIR)/config.json)
+
+copy-licenses:
+	$(COPY) LICENSE $(call fix_path,$(OUT_DIR))
+	$(COPY) THIRD_PARTY_NOTICES.md $(call fix_path,$(OUT_DIR))
+	$(COPY_DIR) licenses $(call fix_path,$(OUT_DIR)/licenses)
+
 
 # 编译 Linux 版本
 build-linux:
@@ -51,6 +59,6 @@ init:
 	$(COPY) config.template.json config.json
 
 # 编译所有版本
-build: clean build-linux build-win64 build-win32 copy-config
+build: clean build-linux build-win64 build-win32 copy-config copy-licenses
 
-.PHONY: build-linux build-win64 build-win32 build clean copy-config
+.PHONY: build-linux build-win64 build-win32 build clean copy-config copy-licenses
